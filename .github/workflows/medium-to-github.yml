@@ -32,7 +32,7 @@ jobs:
           import os
 
           # Medium RSS feed URL
-          MEDIUM_RSS = "https://medium.com/feed/@yourusername"
+          MEDIUM_RSS = "https://medium.com/feed/@jaskaran42"
 
           # Fetch and parse RSS feed
           feed = feedparser.parse(MEDIUM_RSS)
