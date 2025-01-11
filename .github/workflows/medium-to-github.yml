@@ -53,17 +53,13 @@ jobs:
 
           EOF
 
-      # Step 5: Commit and Push Articles
       - name: Commit and Push Articles
-        env:
-          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: |
-          git remote -v
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git remote set-url origin https://github.com/${{ github.repository }}.git
-          git add articles/*.md
-          git commit -m "Add Medium articles [Auto-Generated]" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git
-
-
+  env:
+    PAT_TOKEN: ${{ secrets.PAT_TOKEN }} # Replace with your actual PAT secret name
+  run: |
+    git config --global user.name "GitHub Actions"
+    git config --global user.email "actions@github.com"
+    git remote set-url origin https://github.com/${{ github.repository }}.git
+    git add articles/*.md
+    git commit -m "Add Medium articles [Auto-Generated]" || echo "No changes to commit"
+    git push https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git --verbose
