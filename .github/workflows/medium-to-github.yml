@@ -31,9 +31,18 @@ jobs:
           import feedparser
           from markdownify import markdownify as md
           import os
+          import re
 
           # Medium RSS feed URL
           MEDIUM_RSS = "https://medium.com/feed/@jaskaran42"
+
+          # Function to sanitize filenames
+          def sanitize_filename(title):
+              # Replace invalid characters with underscores or remove them
+              title = re.sub(r'[<>:"/\\|?*]', '_', title)  # Replace invalid filename characters
+              title = re.sub(r'\s+', '_', title.strip())  # Replace spaces with underscores
+              title = re.sub(r'“|”', '', title)  # Remove smart quotes
+              return title
 
           # Fetch and parse RSS feed
           feed = feedparser.parse(MEDIUM_RSS)
@@ -41,16 +50,18 @@ jobs:
               title = entry.title
               link = entry.link
               content = entry.content[0].value if "content" in entry else entry.summary
-              
+
+              # Sanitize title for filenames
+              safe_title = sanitize_filename(title)
+
               # Convert HTML to Markdown
               markdown_content = f"# {title}\n\n{md(content)}\n\n[Read on Medium]({link})"
 
               # Save to a file in the 'articles' folder
-              filename = f"articles/{title.replace(' ', '_').replace('/', '_')}.md"
+              filename = f"articles/{safe_title}.md"
               os.makedirs("articles", exist_ok=True)
               with open(filename, "w", encoding="utf-8") as f:
                   f.write(markdown_content)
-
           EOF
 
       # Step 5: Convert Markdown to HTML
