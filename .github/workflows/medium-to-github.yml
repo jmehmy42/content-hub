@@ -52,8 +52,34 @@ jobs:
                   f.write(markdown_content)
 
           EOF
+          # Step 5: Convert Markdown to HTML
+      - name: Convert Markdown to HTML
+        run: |
+          python - <<EOF
+          import markdown
+          import os
 
-      # Step 5: Commit and Push Articles
+          # Path to the articles folder
+          ARTICLES_DIR = "articles"
+          os.makedirs(ARTICLES_DIR, exist_ok=True)
+
+          # Convert each Markdown file to HTML
+          for filename in os.listdir(ARTICLES_DIR):
+              if filename.endswith(".md"):
+                  filepath = os.path.join(ARTICLES_DIR, filename)
+                  with open(filepath, "r", encoding="utf-8") as f:
+                      md_content = f.read()
+
+                  # Convert Markdown to HTML
+                  html_content = markdown.markdown(md_content)
+
+                  # Save the HTML file
+                  html_filename = filename.replace(".md", ".html")
+                  with open(os.path.join(ARTICLES_DIR, html_filename), "w", encoding="utf-8") as f:
+                      f.write(html_content)
+          EOF
+
+      # Step 6: Commit and Push Articles
       - name: Commit and Push Articles
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }} # Reference the PAT secret correctly
