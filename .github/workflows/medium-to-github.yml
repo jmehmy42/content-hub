@@ -41,7 +41,8 @@ jobs:
               # Replace invalid characters with underscores or remove them
               title = re.sub(r'[<>:"/\\|?*]', '_', title)  # Replace invalid filename characters
               title = re.sub(r'\s+', '_', title.strip())  # Replace spaces with underscores
-              title = re.sub(r'“|”', '', title)  # Remove smart quotes
+              title = re.sub(r'[“”‘’]', '', title)  # Remove smart quotes and curly apostrophes
+              title = re.sub(r'[^\w\-_.]', '', title)  # Remove remaining non-word characters
               return title
 
           # Fetch and parse RSS feed
