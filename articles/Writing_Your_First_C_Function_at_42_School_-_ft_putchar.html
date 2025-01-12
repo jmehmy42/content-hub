@@ -1,0 +1,120 @@
+<h1>Writing Your First C Function at 42 School - ft_putchar</h1>
+<p><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*xornPYNZlnlcrdBb78vr8w.jpeg" /></p>
+<p>If you’re just diving into C programming, welcome to the wild ride! One of the first things you’ll tackle — especially if you’re at 42 and doing the <strong>piscine</strong> (hello, sleepless nights!) — is learning to write your own functions. And yes, you’ll quickly realize that C doesn’t come with all the handy tools you’re used to in modern programming languages. You want to print something? Forget about printf(). You’re on your own, buddy! 😅</p>
+<p>But hey, don’t panic. Let’s start simple. We’re going to create a tiny but mighty function called ft_putchar, and all it does is print a single character to your terminal. Think of it as your first baby step into the world of C functions. Trust me, you’ll thank yourself later when this becomes the building block for so many other cool things. Let’s break it down, one laugh at a time! 😄</p>
+<h3>Understanding the ft_putchar Function</h3>
+<p>Here’s the complete code:</p>
+<p>```</p>
+<h1>include <unistd.h></h1>
+<p>void ft_putchar(char c);  </p>
+<p>void ft_putchar(char c)<br />
+{<br />
+    write(1, &amp;c, 1);<br />
+}
+```</p>
+<p>This program demonstrates how to define a custom function to output a character using the write system call. Let’s break it down in detail.</p>
+<h3>1. The #include Directive</h3>
+<p>```</p>
+<h1>include <unistd.h></h1>
+<p>```</p>
+<p>The <unistd.h> library gives you access to the write function, which is used for low-level input/output operations in C. This header is essential for Unix-like operating systems (e.g., Linux, macOS).</p>
+<ul>
+<li><strong>Why use</strong> <strong><unistd.h>?</strong></li>
+<li>It’s lightweight and focused on low-level operations.</li>
+<li>It directly interacts with system calls, making it suitable for custom libraries and embedded systems.</li>
+</ul>
+<h3>2. Declaring the Function</h3>
+<p><code>void ft_putchar(char c);</code></p>
+<p>This is a function prototype, which informs the compiler about the function’s:</p>
+<ul>
+<li><strong>Name:</strong> ft_putchar</li>
+<li><strong>Return type:</strong> void (indicates no return value)</li>
+<li><strong>Parameter type:</strong> A single char input.</li>
+</ul>
+<p>By declaring the function before main, the compiler knows its structure even before encountering its definition or use.</p>
+<h3>3. Defining the Function</h3>
+<p><code>void ft_putchar(char c)  
+{  
+    write(1, &amp;c, 1);  
+}</code></p>
+<p>Here’s where the function is implemented. The write system call is the key component:</p>
+<ul>
+<li><strong>Syntax of</strong><strong>write:</strong></li>
+</ul>
+<p><code>ssize_t write(int fd, const void *buf, size_t count);</code></p>
+<ul>
+<li><strong>fd (File Descriptor):</strong> The number 1 represents standard output (stdout).</li>
+<li><strong>buf (Buffer):</strong> The address of the character c to be written (&amp;c).</li>
+<li><strong>count:</strong> Specifies the number of bytes to write. For a single character, this is 1.</li>
+</ul>
+<p>When executed, write sends the character c to the terminal.</p>
+<h3>4. The main Function</h3>
+<p>The main function included here is purely for testing purposes. In the 42 piscine, you'll need to comment out or remove the main function before submitting your code (trust me, it's a rule you don’t want to break). However, while you're learning and testing your functions, the main function is your best friend. It not only helps you ensure your function works as expected but also gives you a better understanding of how functions interact within your program. So, use it wisely during testing but remember to clean it up before turning in your work! 😉</p>
+<p><code>int main()  
+{  
+    char a;  
+    a = 'Z';  
+    ft_putchar(a);  
+}</code></p>
+<p>The main function is the program's entry point. Here’s what happens step by step:</p>
+<ol>
+<li><strong>Declare a Variable:</strong></li>
+</ol>
+<p><code>char a;</code></p>
+<ol>
+<li>A variable a is declared and initialized with the character 'Z'.</li>
+</ol>
+<p><code>a = 'Z';</code></p>
+<p><strong>Call</strong> <strong>ft_putchar:</strong></p>
+<p><code>ft_putchar(a);</code></p>
+<ol>
+<li>The ft_putchar function is called with a as its argument, printing 'Z' to the terminal.</li>
+</ol>
+<h3>Output of the Program</h3>
+<p>When you compile and run the program:</p>
+<p><code>$ gcc ft_putchar.c -o ft_putchar  
+$ ./ft_putchar  
+Z</code></p>
+<p>You’ll see <strong>Z</strong> displayed in your terminal.</p>
+<h3>Why Use ft_putchar Instead of printf?</h3>
+<p>While the printf function can achieve the same result, ft_putchar offers several advantages:</p>
+<ol>
+<li>
+<p><strong>Efficiency:</strong></p>
+</li>
+<li>
+<p>ft_putchar is lightweight, as it avoids the overhead of the more complex <stdio.h> library.</p>
+</li>
+</ol>
+<p><strong>2. Low-Level Control:</strong></p>
+<ul>
+<li>Directly interacts with system calls, making it ideal for kernel programming, embedded systems, or building custom libraries.</li>
+</ul>
+<p><strong>3. Educational Value:</strong></p>
+<ul>
+<li>It helps beginners grasp low-level I/O operations and understand how data is written to the terminal.</li>
+</ul>
+<h3>Practical Enhancements</h3>
+<p>Once you’ve mastered ft_putchar, consider building more advanced functions using it as a foundation:</p>
+<ol>
+<li><strong>ft_putstr:</strong> A function to print strings by combining ft_putchar with loops.</li>
+<li><strong>ft_putnbr:</strong> A function to print numbers by converting integers to characters.</li>
+<li><strong>Custom Libraries:</strong> Add ft_putchar to a library like <a href="https://github.com/">libft</a> to create reusable tools for your projects.</li>
+</ol>
+<h3>Conclusion</h3>
+<p>The ft_putchar function may be simple, but it demonstrates critical concepts like function creation, parameter passing, and low-level system calls. Writing and understanding this function is a great stepping stone toward more complex programming tasks.</p>
+<p>Challenge yourself by modifying this code to print different characters or even create new functions based on it. Small steps like this will lay the groundwork for becoming a proficient C programmer.</p>
+<h3>Suggested Meta Description:</h3>
+<p>“Learn how to create the ft_putchar function in C to print a single character. Understand the code step by step and explore its practical applications for low-level programming."</p>
+<h3>Title Suggestions:</h3>
+<ol>
+<li><strong>“Building Blocks of C Programming: The</strong> <strong>ft_putchar Function Explained"</strong></li>
+<li><strong>“Master Low-Level I/O Operations in C: Writing the</strong> <strong>ft_putchar Function"</strong></li>
+<li><strong>“Learn to Write the</strong> <strong>ft_putchar Function in C: A Beginner’s Guide"</strong></li>
+<li><strong>“Simplify Character Output in C with the</strong> <strong>ft_putchar Function"</strong></li>
+</ol>
+<h3>Conclusion</h3>
+<p>The ft_putchar function may seem simple, but it demonstrates many fundamental concepts in C, such as function creation, parameter passing, and system calls. By understanding and practicing this code, you'll build a strong foundation for more complex programming tasks.</p>
+<p>Try modifying the code to print different characters, or expand it into a more comprehensive output library. Happy coding! 🚀</p>
+<p><img alt="" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=e5a74a55737f" /></p>
+<p><a href="https://jaskaran42.medium.com/writing-your-first-c-function-at-42-school-ft-putchar-e5a74a55737f?source=rss-41f5a113b923------2">Read on Medium</a></p>
