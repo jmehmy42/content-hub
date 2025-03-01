@@ -1,6 +1,7 @@
 # Understanding Variables and Constants in C Programming: A Complete Guide for Beginners
 
 ![](https://cdn-images-1.medium.com/max/1024/1*kQ6Z7WCKHw2JcqsZA2GWtg.jpeg)
+
 ### Introduction
 
 In the world of computer programming, the ability to store and manipulate data is fundamental. This is where variables and constants come into play. In this comprehensive blog post, we will delve into the intricacies of variables and constants in the C programming language, exploring their differences, use cases, and best practices for declaration and implementation.
@@ -129,6 +130,7 @@ int age = 25;
 char grade = 'A';  
 float gpa = 3.8;
 ```
+
 ### Declaring Constants
 
 The general syntax for declaring a constant in C is:

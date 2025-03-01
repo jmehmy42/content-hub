@@ -1,6 +1,7 @@
 # Mastering Command Line Arguments in C: A Comprehensive Guide with Examples
 
 ![](https://cdn-images-1.medium.com/max/1024/1*oGSiF2WyoSjIWZH6pS4DUQ.jpeg)
+
 ### Introduction
 
 As a C programmer, mastering command line arguments is an essential skill. These arguments allow you to pass data to your program at runtime without relying on interactive input methods like scanf(). This capability enhances flexibility and automation when executing your programs. In this blog post, we’ll explore command line arguments in C, covering their purpose, syntax, and practical applications in detail.
@@ -56,6 +57,7 @@ int main(int argc, char *argv[])
     return 0;  
 }
 ```
+
 ```
 Usage: Run the program with program 1 2 3.
 ```
@@ -69,6 +71,7 @@ Argument 1: 1
 Argument 2: 2    
 Argument 3: 3
 ```
+
 #### Example 2: Performing Arithmetic Operations
 
 This program accepts two numbers as arguments and performs basic arithmetic:
@@ -94,6 +97,7 @@ int main(int argc, char *argv[])
     return 0;  
 }
 ```
+
 ```
 Usage: Run the program with program 10 5.
 ```
@@ -106,6 +110,7 @@ Subtraction: 5
 Multiplication: 50    
 Division: 2
 ```
+
 #### Example 3: Command-Line Calculator
 
 This enhanced version includes support for multiple operations:
@@ -155,6 +160,7 @@ int main(int argc, char *argv[])
     return 0;  
 }
 ```
+
 ```
 Usage: Run the program with program 10 + 5
 ```
@@ -164,6 +170,7 @@ Usage: Run the program with program 10 + 5
 ```
 10 + 5 = 15
 ```
+
 ### Advanced Techniques
 
 #### 1. Type Conversion
